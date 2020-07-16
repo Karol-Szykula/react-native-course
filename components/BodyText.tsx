@@ -1,9 +1,9 @@
-import React, { Children } from "react";
+import React, { ReactNode } from "react";
 import { StyleSheet, Text } from "react-native";
 
 interface BodyTextProps {
-  children: string | number | Array<string | number>;
-  style?: any;
+  children: string | number | Array<string | number> | ReactNode;
+  style?: object;
 }
 
 const BodyText = ({ children, style }: BodyTextProps) => {
@@ -12,7 +12,7 @@ const BodyText = ({ children, style }: BodyTextProps) => {
 
 const styles = StyleSheet.create({
   body: {
-    fontFamily: "open-sans",
+    fontFamily: "open-sans-bold",
   },
 });
 

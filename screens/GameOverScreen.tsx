@@ -1,8 +1,10 @@
 import React from "react";
-import { StyleSheet, View, Button, Image } from "react-native";
+import { StyleSheet, View, Button, Image, Text } from "react-native";
 
 import BodyText from "../components/BodyText";
 import TitleText from "../components/TitleText";
+
+import Colors from "../constants/colors";
 
 interface GameOverScreenProps {
   roundsNumber: number;
@@ -21,17 +23,22 @@ const GameOverScreen = ({
       <View style={styles.imageContainer}>
         <Image
           fadeDuration={1000}
-          // source={require("../assets/success.png")}
-          source={{
-            uri:
-              "https://www.success.com/wp-content/uploads/2019/12/How-to-Align-Your-Career-With-Your-Personal-Definition-of-Success-1024x682.jpg",
-          }}
+          source={require("../assets/success.png")}
+          // source={{
+          //   uri:
+          //     "https://www.success.com/wp-content/uploads/2019/12/How-to-Align-Your-Career-With-Your-Personal-Definition-of-Success-1024x682.jpg",
+          // }}
           style={styles.image}
           resizeMode={"cover"}
         />
       </View>
-      <BodyText>Number of rounds: {roundsNumber}</BodyText>
-      <BodyText>Correct number: {userNumber}</BodyText>
+      <View style={styles.resultContainer}>
+        <BodyText style={styles.resultText}>
+          Your phone needed <Text style={styles.highlight}>{roundsNumber}</Text>{" "}
+          rounds to guess the number{" "}
+          <Text style={styles.highlight}>{userNumber}</Text>
+        </BodyText>
+      </View>
       <Button title={"New Game"} onPress={() => onNewGame()}></Button>
     </View>
   );
@@ -56,6 +63,18 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     borderRadius: 200,
+  },
+  resultText: {
+    textAlign: "center",
+    fontSize: 20,
+  },
+  resultContainer: {
+    marginHorizontal: 20,
+    marginVertical: 15,
+  },
+  highlight: {
+    color: Colors.primary,
+    fontFamily: "open-sans-bold",
   },
 });
 
