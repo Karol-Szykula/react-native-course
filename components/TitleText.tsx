@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 interface TitleTextProps {
-  children: string;
+  children: string | number | Array<string | number>;
   style?: any;
 }
 

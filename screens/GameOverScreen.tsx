@@ -1,5 +1,10 @@
 import React from "react";
-import { StyleSheet, View, Text, Button } from "react-native";
+import { StyleSheet, View, Button, Image } from "react-native";
+
+import BodyText from "../components/BodyText";
+import TitleText from "../components/TitleText";
+
+const SuccessImage = require("../assets/success.png");
 
 interface GameOverScreenProps {
   roundsNumber: number;
@@ -14,9 +19,10 @@ const GameOverScreen = ({
 }: GameOverScreenProps) => {
   return (
     <View style={styles.screen}>
-      <Text>The game is over</Text>
-      <Text>Number of rounds: {roundsNumber}</Text>
-      <Text>Correct number: {userNumber}</Text>
+      <TitleText>The game is over</TitleText>
+      <Image source={SuccessImage} />
+      <BodyText>Number of rounds: {roundsNumber}</BodyText>
+      <BodyText>Correct number: {userNumber}</BodyText>
       <Button title={"New Game"} onPress={() => onNewGame()}></Button>
     </View>
   );
