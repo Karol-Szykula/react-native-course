@@ -4,8 +4,6 @@ import { StyleSheet, View, Button, Image } from "react-native";
 import BodyText from "../components/BodyText";
 import TitleText from "../components/TitleText";
 
-const SuccessImage = require("../assets/success.png");
-
 interface GameOverScreenProps {
   roundsNumber: number;
   userNumber: number;
@@ -22,7 +20,12 @@ const GameOverScreen = ({
       <TitleText>The game is over</TitleText>
       <View style={styles.imageContainer}>
         <Image
-          source={SuccessImage}
+          fadeDuration={1000}
+          // source={require("../assets/success.png")}
+          source={{
+            uri:
+              "https://www.success.com/wp-content/uploads/2019/12/How-to-Align-Your-Career-With-Your-Personal-Definition-of-Success-1024x682.jpg",
+          }}
           style={styles.image}
           resizeMode={"cover"}
         />
