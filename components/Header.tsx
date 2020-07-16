@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 import Colors from "../constants/colors";
+import Fonts from "../constants/fonts";
 
 interface HeaderProps {
   title: string;
@@ -27,6 +28,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     color: "black",
     fontSize: 18,
+    fontFamily: Fonts.mainFontBold,
   },
 });
 
