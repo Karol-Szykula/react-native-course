@@ -57,7 +57,7 @@ export default function App() {
       <GameOverScreen
         roundsNumber={guessRounds}
         userNumber={userNumber}
-        onNewGame={configureNewGameHandler}
+        onRestart={configureNewGameHandler}
       />
     );
   }
@@ -65,12 +65,7 @@ export default function App() {
   return (
     <View style={styles.screen}>
       <Header title={"Guess a Number"} />
-      {/* {content} */}
-      <GameOverScreen
-        roundsNumber={guessRounds}
-        userNumber={5}
-        onNewGame={configureNewGameHandler}
-      />
+      {content}
     </View>
   );
 }

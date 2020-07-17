@@ -3,19 +3,19 @@ import { StyleSheet, View, Button, Image, Text } from "react-native";
 
 import BodyText from "../components/BodyText";
 import TitleText from "../components/TitleText";
-
+import MainButton from "../components/MainButton";
 import Colors from "../constants/colors";
 
 interface GameOverScreenProps {
   roundsNumber: number;
   userNumber: number;
-  onNewGame: Function;
+  onRestart: Function;
 }
 
 const GameOverScreen = ({
   roundsNumber,
   userNumber,
-  onNewGame,
+  onRestart,
 }: GameOverScreenProps) => {
   return (
     <View style={styles.screen}>
@@ -39,7 +39,7 @@ const GameOverScreen = ({
           <Text style={styles.highlight}>{userNumber}</Text>
         </BodyText>
       </View>
-      <Button title={"New Game"} onPress={() => onNewGame()}></Button>
+      <MainButton onPress={() => onRestart()}>New Game</MainButton>
     </View>
   );
 };
