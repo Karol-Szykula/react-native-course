@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -26,6 +26,9 @@ const StartGameScreen = ({ onStartGame }: StartGameScreenProps) => {
   const [enteredValue, setEnteredValue] = useState<string>("");
   const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
   const [selectedNumber, setSelectedNumber] = useState<number | undefined>();
+  const [buttonWidth, setButtonWidth] = useState(
+    Dimensions.get("window").width / 4
+  );
 
   const numberInputHandler = (inputText: string) => {
     setEnteredValue(inputText.replace(/[^0-9]/g, ""));
@@ -35,6 +38,17 @@ const StartGameScreen = ({ onStartGame }: StartGameScreenProps) => {
     setEnteredValue("");
     setIsConfirmed(false);
   };
+
+  useEffect(() => {
+    const updateLayout = () => {
+      setButtonWidth(Dimensions.get("window").width / 4);
+    };
+
+    Dimensions.addEventListener("change", updateLayout);
+    return () => {
+      Dimensions.removeEventListener("change", updateLayout);
+    };
+  });
 
   const confirmInputHandler = () => {
     const chosenNumber = parseInt(enteredValue);
@@ -93,14 +107,14 @@ const StartGameScreen = ({ onStartGame }: StartGameScreenProps) => {
                 value={enteredValue}
               />
               <View style={styles.buttonContainer}>
-                <View style={styles.button}>
+                <View style={{ width: buttonWidth }}>
                   <Button
                     title={"Reset"}
                     onPress={resetInputHandler}
                     color={Colors.primary}
                   />
                 </View>
-                <View style={styles.button}>
+                <View style={{ width: buttonWidth }}>
                   <Button
                     title={"Confirm"}
                     onPress={confirmInputHandler}
@@ -125,10 +139,10 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: "center",
   },
-  button: {
-    // flex: 0.4,
-    width: Dimensions.get("window").width / 4,
-  },
+  // button: {
+  //   // flex: 0.4,
+  //   width: Dimensions.get("window").width / 4,
+  // },
   title: {
     marginVertical: 10,
   },
