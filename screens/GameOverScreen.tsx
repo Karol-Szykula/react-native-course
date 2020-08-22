@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -24,24 +24,58 @@ const GameOverScreen = ({
   userNumber,
   onRestart,
 }: GameOverScreenProps) => {
+  const [availableDeviceWidth, setAvailableDeviceWidth] = useState(
+    Dimensions.get("window").width
+  );
+  const [availableDeviceHeight, setAvailableDeviceHeight] = useState(
+    Dimensions.get("window").height
+  );
+
+  useEffect(() => {
+    const updateLayout = () => {
+      setAvailableDeviceWidth(Dimensions.get("window").width);
+      setAvailableDeviceHeight(Dimensions.get("window").height);
+    };
+    Dimensions.addEventListener("change", updateLayout);
+
+    return () => {
+      Dimensions.removeEventListener("change", updateLayout);
+    };
+  });
+
   return (
     <ScrollView>
       <View style={styles.screen}>
         <TitleText>The game is over</TitleText>
-        <View style={styles.imageContainer}>
+        <View
+          style={{
+            ...styles.imageContainer,
+            ...{
+              width: availableDeviceWidth * 0.7,
+              height: availableDeviceWidth * 0.7,
+              borderRadius: (availableDeviceWidth * 0.7) / 2,
+              marginVertical: availableDeviceHeight / 30,
+            },
+          }}
+        >
           <Image
-            fadeDuration={1000}
             source={require("../assets/success.png")}
-            // source={{
-            //   uri:
-            //     "https://www.success.com/wp-content/uploads/2019/12/How-to-Align-Your-Career-With-Your-Personal-Definition-of-Success-1024x682.jpg",
-            // }}
             style={styles.image}
-            resizeMode={"cover"}
+            resizeMode="cover"
           />
         </View>
-        <View style={styles.resultContainer}>
-          <BodyText style={styles.resultText}>
+        <View
+          style={{
+            ...styles.resultContainer,
+            ...{ marginVertical: availableDeviceHeight / 60 },
+          }}
+        >
+          <BodyText
+            style={{
+              ...styles.resultText,
+              ...{ fontSize: availableDeviceHeight < 400 ? 16 : 20 },
+            }}
+          >
             Your phone needed{" "}
             <Text style={styles.highlight}>{roundsNumber}</Text> rounds to guess
             the number <Text style={styles.highlight}>{userNumber}</Text>
