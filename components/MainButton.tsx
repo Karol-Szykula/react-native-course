@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableNativeFeedback } from "react-native";
 
 import Colors from "../constants/colors";
 
@@ -10,11 +10,11 @@ interface MainButtonProps {
 
 const MainButton = ({ children, onPress }: MainButtonProps) => {
   return (
-    <TouchableOpacity activeOpacity={0.6} onPress={() => onPress()}>
+    <TouchableNativeFeedback onPress={() => onPress()}>
       <View style={styles.button}>
         <Text style={styles.buttonText}>{children}</Text>
       </View>
-    </TouchableOpacity>
+    </TouchableNativeFeedback>
   );
 };
 

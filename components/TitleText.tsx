@@ -7,7 +7,7 @@ interface TitleTextProps {
 }
 
 const TitleText = ({ children, style }: TitleTextProps) => {
-  return <Text style={{ ...styles.title, ...style }}></Text>;
+  return <Text style={{ ...styles.title, ...style }}>{children}</Text>;
 };
 
 export default TitleText;
